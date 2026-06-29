@@ -1,0 +1,46 @@
+{
+  "name": "Al Qur'an As Salam",
+  "short_name": "As Salam",
+  "description": "Aplikasi Al Qur'an Digital dengan Audio Murottal, Jadwal Shalat, dan Arah Kiblat",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#064e3b",
+  "lang": "id",
+  "dir": "ltr",
+  "categories": ["education", "lifestyle", "religion"],
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Daftar Surah",
+      "short_name": "Surah",
+      "description": "Buka daftar 114 surah",
+      "url": "./index.html#surah",
+      "icons": [{ "src": "logo.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Audio Murottal",
+      "short_name": "Murottal",
+      "description": "Putar audio murottal",
+      "url": "./index.html#audio",
+      "icons": [{ "src": "logo.png", "sizes": "192x192" }]
+    }
+  ],
+  "screenshots": [],
+  "prefer_related_applications": false
+}

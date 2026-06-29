@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f766e">
+  <link rel="manifest" href="./manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="As Salam">
+<link rel="apple-touch-icon" href="./logo.png">
+  <title>Al Qur'an As Salam</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./Style.css">
+</head>
+<body>
+
+  <!-- SPLASH SCREEN -->
+  <div id="splash-screen" class="splash-container">
+    <div class="splash-content">
+      <div class="splash-icon">
+        <img src="logo.png" alt="Logo As Salam" class="splash-logo">
+      </div>
+      <div class="splash-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- APPLICATION HEADER -->
+  <header class="app-header">
+    <button id="hamburger-btn" class="icon-btn">
+      <span class="material-icons">menu</span>
+    </button>
+    <img src="logo.png" alt="Logo" class="header-logo">
+    <div class="header-text">
+      <h2 id="app-header-title">Al Qur'an As Salam</h2>
+      <p id="app-header-subtitle">Aplikasi Al Qur'an Digital</p>
+    </div>
+  </header>
+
+  <!-- SIDE DRAWER -->
+  <div id="overlay" class="drawer-overlay"></div>
+  <nav id="drawer" class="side-drawer">
+    <div class="drawer-header">
+      <h3>Al Qur'an As Salam</h3>
+      <p>Menu Navigasi</p>
+    </div>
+    <ul class="drawer-menu">
+      <li id="drawer-home" class="active-menu"><span class="material-icons">home</span> Beranda</li>
+      <li id="drawer-surah"><span class="material-icons">menu_book</span> Daftar Surah</li>
+      <li id="drawer-audio"><span class="material-icons">volume_up</span> Audio Murottal</li>
+      <li id="drawer-bookmark"><span class="material-icons">bookmark</span> Markah Simpanan</li>
+      <li id="drawer-settings"><span class="material-icons">settings</span> Setelan</li>
+    </ul>
+    <div class="drawer-footer">
+      <p>Versi 2.0 · As Salam</p>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- VIEW 1: BERANDA -->
+    <section id="home-view" class="view-section">
+      <div class="hero-home">
+        <div class="hero-bg-pattern"></div>
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="material-icons">auto_stories</span>
+            Aplikasi Al Qur'an Digital
+          </div>
+          <div class="bismillah-arab">﷽</div>
+          <p class="hero-tagline">Dengan nama Allah Yang Maha Pengasih, Maha Penyayang</p>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-num">114</span>
+            <span class="stat-label">Surah</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-num">6.236</span>
+            <span class="stat-label">Ayat</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-num">30</span>
+            <span class="stat-label">Juz</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="last-read-card" class="last-read-card hidden">
+        <div class="lr-icon-wrap">
+          <span class="material-icons">bookmark</span>
+        </div>
+        <div class="lr-info">
+          <span class="lr-label">Terakhir Dibaca</span>
+          <h4 id="lr-surah-name">—</h4>
+          <p id="lr-ayah-info">Ayat —</p>
+        </div>
+        <button id="lr-continue-btn" class="lr-btn">
+          <span class="material-icons">play_arrow</span>
+          Lanjut
+        </button>
+      </div>
+
+      <div class="section-label">Menu Utama</div>
+      <div class="quick-menu-grid">
+        <div id="quick-surah" class="quick-card">
+          <div class="quick-icon-wrap green">
+            <span class="material-icons">menu_book</span>
+          </div>
+          <p class="quick-title">Al Qur'an</p>
+          <p class="quick-sub">114 Surah</p>
+        </div>
+        <div id="quick-shalat" class="quick-card">
+          <div class="quick-icon-wrap blue">
+            <span class="material-icons">mosque</span>
+          </div>
+          <p class="quick-title">Jadwal Shalat</p>
+          <p class="quick-sub">5 Waktu</p>
+        </div>
+        <div id="quick-qiblat" class="quick-card">
+          <div class="quick-icon-wrap purple">
+            <span class="material-icons">explore</span>
+          </div>
+          <p class="quick-title">Arah Qiblat</p>
+          <p class="quick-sub">Kompas Digital</p>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <div class="quote-icon">❝</div>
+        <p class="quote-text">Sebaik-baik kalian adalah yang belajar Al Qur'an dan mengajarkannya.</p>
+        <p class="quote-source">— HR. Bukhari</p>
+      </div>
+
+      <div class="section-label">Surah Populer</div>
+      <div class="popular-surah-row" id="popular-surah-row"></div>
+    </section>
+
+    <!-- VIEW 2: DAFTAR SURAH -->
+    <section id="surah-list-view" class="view-section hidden">
+      <button class="back-button" onclick="switchView('home')">
+        <span class="material-icons">arrow_back</span> Kembali
+      </button>
+      <div class="page-title-bar">
+        <h2>Daftar Surah</h2>
+        <span>114 Surah</span>
+      </div>
+      <div class="search-box">
+        <span class="material-icons">search</span>
+        <input type="text" id="search-surah-input" placeholder="Cari nama surah atau arti...">
+      </div>
+      <div id="quranPage" class="list-container"></div>
+    </section>
+
+    <!-- VIEW 3: DETAIL BACA SURAH -->
+    <section id="surah-detail-view" class="view-section hidden">
+      <div id="surah-detail-banner" class="surah-banner">
+        <button class="back-btn-white" onclick="switchView('surah-list')">
+          <span class="material-icons">arrow_back</span>
+        </button>
+        <div class="banner-body">
+          <h2 id="detail-banner-latin">Nama Surah</h2>
+          <p id="detail-banner-info">INFO SURAH</p>
+          <h1 id="detail-banner-arab" class="banner-arab">الفاتحة</h1>
+        </div>
+        <div class="banner-actions">
+          <button id="btn-play-full-audio" class="banner-play-btn">
+            <span class="material-icons">play_arrow</span> Putar Semua
+          </button>
+        </div>
+        <div class="audio-range-box">
+          <div class="range-row">
+            <div class="range-group">
+              <label>Dari Ayat</label>
+              <select id="audio-from-ayah"></select>
+            </div>
+            <div class="range-group">
+              <label>Sampai</label>
+              <select id="audio-to-ayah"></select>
+            </div>
+            <div class="range-group">
+              <label>Ulangi</label>
+              <select id="audio-repeat-count">
+                <option value="1">1x</option>
+                <option value="3">3x</option>
+                <option value="5">5x</option>
+                <option value="10">10x</option>
+                <option value="20">20x</option>
+                <option value="50">50x</option>
+                <option value="100">100x</option>
+              </select>
+            </div>
+            <button id="btn-play-range" class="range-play-btn">
+              <span class="material-icons">play_arrow</span> Putar
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="ayah-list-container" class="ayah-container"></div>
+    </section>
+
+    <!-- VIEW 4: AUDIO MUROTTAL -->
+    <section id="audio-surah-view" class="view-section hidden">
+      <button class="back-button" onclick="switchView('home')">
+        <span class="material-icons">arrow_back</span> Kembali
+      </button>
+      <div class="page-title-bar">
+        <h2>Audio Murottal</h2>
+        <span>114 Surah</span>
+      </div>
+      <div id="surahAudioPage" class="list-container"></div>
+    </section>
+
+    <!-- VIEW 5: BOOKMARK -->
+    <section id="bookmark-view" class="view-section hidden">
+      <div class="page-title-bar">
+        <h2>Markah Simpanan</h2>
+      </div>
+      <div id="bookmarkPage" class="list-container"></div>
+    </section>
+
+    <!-- VIEW 6: SETTINGS -->
+    <section id="settings-view" class="view-section hidden">
+      <button class="back-button" onclick="switchView('home')">
+        <span class="material-icons">arrow_back</span> Kembali
+      </button>
+      <div class="page-title-bar">
+        <h2>Setelan</h2>
+      </div>
+      <div class="settings-card">
+        <div class="setting-item">
+          <div class="setting-info">
+            <h4>Mode Gelap</h4>
+            <p>Ubah tampilan menjadi gelap</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="dark-mode-toggle">
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <hr>
+        <div class="setting-item">
+          <div class="setting-info">
+            <h4>Tampilkan Latin</h4>
+            <p>Tampilkan atau sembunyikan transliterasi</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="show-latin" checked>
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <hr>
+        <div class="setting-item">
+          <div class="setting-info">
+            <h4>Tampilkan Terjemahan</h4>
+            <p>Munculkan arti ayat bahasa Indonesia</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="translation-toggle" checked>
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <hr>
+        <div class="setting-item">
+          <div class="setting-info">
+            <h4>Ukuran Font Arab</h4>
+            <p>Sesuaikan besar teks Arab</p>
+          </div>
+          <select id="font-size-select" class="styled-select">
+            <option value="24px">Kecil</option>
+            <option value="28px" selected>Sedang</option>
+            <option value="36px">Besar</option>
+            <option value="42px">Sangat Besar</option>
+          </select>
+        </div>
+        <hr>
+        <div class="setting-item">
+          <div class="setting-info">
+            <h4>Pilih Qari</h4>
+            <p>Pilih suara murottal favorit</p>
+          </div>
+          <select id="qari-select" class="styled-select">
+            <option value="01">Mishari Alafasy</option>
+            <option value="02">Abdul Basit</option>
+            <option value="03">Minshawi</option>
+            <option value="04">Hani Rifai</option>
+            <option value="05">Maher Al Muaiqly</option>
+            <option value="06">Al Husary</option>
+            <option value="07">As Sudais</option>
+            <option value="08">Al Hudhaify</option>
+            <option value="09">Muhammad Ayyoub</option>
+            <option value="10">Al Tablaway</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 7: JADWAL SHALAT -->
+    <section id="shalat-view" class="view-section hidden">
+      <button class="back-button" onclick="switchView('home')">
+        <span class="material-icons">arrow_back</span> Kembali
+      </button>
+      <div class="page-title-bar">
+        <h2>Jadwal Shalat</h2>
+      </div>
+      <div id="shalat-content"></div>
+    </section>
+
+    <!-- VIEW 8: ARAH KIBLAT -->
+    <section id="qiblat-view" class="view-section hidden">
+      <button class="back-button" onclick="switchView('home')">
+        <span class="material-icons">arrow_back</span> Kembali
+      </button>
+      <div class="page-title-bar">
+        <h2>Arah Kiblat</h2>
+      </div>
+      <div id="qiblat-content"></div>
+    </section>
+
+  </main>
+
+  <!-- GLOBAL AUDIO PLAYER -->
+  <div id="global-audio-player" class="global-audio-bar hidden">
+    <div class="player-top">
+      <div class="player-info">
+        <div class="player-wave">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="player-text">
+          <p id="audio-player-title">Memutar Audio...</p>
+          <p id="audio-player-sub">Al Qur'an As Salam</p>
+        </div>
+      </div>
+      <div class="player-controls">
+        <button id="btn-prev-ayah" class="ctrl-btn"><span class="material-icons">skip_previous</span></button>
+        <button id="btn-play-pause" class="ctrl-btn play"><span class="material-icons">pause</span></button>
+        <button id="btn-next-ayah" class="ctrl-btn"><span class="material-icons">skip_next</span></button>
+      </div>
+    </div>
+    <audio id="main-audio-element"></audio>
+    <div class="player-progress">
+      <span id="prog-current">0:00</span>
+      <input type="range" id="progress-bar" value="0" min="0" max="100" step="1">
+      <span id="prog-duration">0:00</span>
+    </div>
+  </div>
+
+  <!-- BOTTOM NAVIGATION -->
+  <nav class="bottom-nav">
+    <a href="#" id="nav-home" class="active">
+      <span class="material-icons">home</span>
+      <span>Beranda</span>
+    </a>
+    <a href="#" id="nav-surah">
+      <span class="material-icons">menu_book</span>
+      <span>Surah</span>
+    </a>
+    <a href="#" id="nav-audio">
+      <span class="material-icons">volume_up</span>
+      <span>Audio</span>
+    </a>
+    <a href="#" id="nav-bookmark">
+      <span class="material-icons">bookmark</span>
+      <span>Simpan</span>
+    </a>
+    <a href="#" id="nav-settings">
+      <span class="material-icons">settings</span>
+      <span>Setelan</span>
+    </a>
+  </nav>
+
+  <script src="script.js" defer></script>
+
+  <script>
+    /* ── Daftarkan Service Worker ── */
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker
+          .register('./sw.js')
+          .then(reg => {
+            console.log('[PWA] Service Worker terdaftar:', reg.scope);
+
+            /* Deteksi update SW baru → beritahu user */
+            // GANTI bagian ini:
+reg.addEventListener('updatefound', () => {
+  const newSW = reg.installing;
+  newSW.addEventListener('statechange', () => {
+    // Hanya tampil jika SUDAH ada SW sebelumnya (bukan install pertama)
+    // DAN tab ini dikontrol SW lama
+    if (
+      newSW.state === 'installed' &&
+      navigator.serviceWorker.controller &&
+      !sessionStorage.getItem('sw_first_install')
+    ) {
+      showUpdateBanner();
+    }
+    // Tandai bahwa SW sudah pernah install
+    if (newSW.state === 'activated') {
+      sessionStorage.setItem('sw_first_install', 'done');
+    }
+  });
+});
+          })
+          .catch(err => console.warn('[PWA] SW gagal daftar:', err));
+      });
+    }
+
+    /* ── Banner update versi baru ── */
+    function showUpdateBanner() {
+      const banner = document.createElement('div');
+      banner.style.cssText = `
+        position:fixed; bottom:70px; left:50%; transform:translateX(-50%);
+        background:#064e3b; color:#fff; padding:12px 20px; border-radius:14px;
+        font-size:13px; font-weight:600; z-index:9999; box-shadow:0 4px 16px rgba(0,0,0,0.3);
+        display:flex; align-items:center; gap:12px; white-space:nowrap;
+      `;
+      banner.innerHTML = `
+        <span>Versi baru tersedia!</span>
+        <button onclick="location.reload()" style="
+          background:#34d399; color:#064e3b; border:none; border-radius:8px;
+          padding:6px 14px; font-size:12px; font-weight:700; cursor:pointer;">
+          Perbarui
+        </button>
+        <button onclick="this.parentElement.remove()" style="
+          background:none; border:none; color:rgba(255,255,255,0.7);
+          font-size:18px; cursor:pointer; padding:0 4px; line-height:1;">
+          ×
+        </button>
+      `;
+      document.body.appendChild(banner);
+      setTimeout(() => banner?.remove(), 10000);
+    }
+
+    /* ── Prompt Install (Android Chrome) ── */
+    let deferredInstallPrompt = null;
+
+    window.addEventListener('beforeinstallprompt', e => {
+      e.preventDefault();
+      deferredInstallPrompt = e;
+      showInstallBadge();
+    });
+
+    function showInstallBadge() {
+      if (document.getElementById('pwa-install-btn')) return;
+
+      const btn = document.createElement('button');
+      btn.id = 'pwa-install-btn';
+      btn.style.cssText = `
+        position:fixed; bottom:75px; right:16px;
+        background:linear-gradient(135deg,#064e3b,#047857);
+        color:#fff; border:none; border-radius:50px;
+        padding:10px 18px; font-size:13px; font-weight:700;
+        box-shadow:0 6px 20px rgba(6,78,59,0.45);
+        z-index:9998; cursor:pointer;
+        display:flex; align-items:center; gap:8px;
+        animation: pwaSlideIn 0.4s ease;
+      `;
+      btn.innerHTML = `
+        <span style="font-size:18px">📲</span>
+        Instal Aplikasi
+      `;
+
+      /* Animasi masuk */
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes pwaSlideIn {
+          from { opacity:0; transform:translateY(20px); }
+          to   { opacity:1; transform:translateY(0); }
+        }
+      `;
+      document.head.appendChild(style);
+
+      btn.addEventListener('click', async () => {
+        if (!deferredInstallPrompt) return;
+        deferredInstallPrompt.prompt();
+        const { outcome } = await deferredInstallPrompt.userChoice;
+        if (outcome === 'accepted') {
+          console.log('[PWA] User menginstal aplikasi');
+          btn.remove();
+        }
+        deferredInstallPrompt = null;
+      });
+
+      document.body.appendChild(btn);
+
+      /* Auto-sembunyikan setelah 15 detik */
+      setTimeout(() => btn?.remove(), 15000);
+    }
+
+    /* Sembunyikan tombol install jika sudah terinstal */
+    window.addEventListener('appinstalled', () => {
+      document.getElementById('pwa-install-btn')?.remove();
+      deferredInstallPrompt = null;
+      console.log('[PWA] Aplikasi berhasil diinstal!');
+    });
+  </script>
+</body>
+</html>
