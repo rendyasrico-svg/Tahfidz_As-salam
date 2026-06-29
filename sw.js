@@ -4,7 +4,7 @@
    Network First untuk API ayat & shalat
    ============================================================ */
 
-const CACHE_NAME    = 'assalam-v2';
+const CACHE_NAME    = 'assalam-v3';
 const AUDIO_CACHE   = 'assalam-audio-v1';
 const API_CACHE     = 'assalam-api-v1';
 
@@ -12,11 +12,10 @@ const API_CACHE     = 'assalam-api-v1';
 const STATIC_ASSETS = [
   './',
   './index.html',
-  './Style.css',
+  './style.css',
   './script.js',
   './logo.png',
-  'https://fonts.googleapis.com/icon?family=Material+Icons',
-  'https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap',
+  ...
 ];
 
 /* ── INSTALL ─────────────────────────────────────────────── */
